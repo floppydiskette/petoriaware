@@ -1,36 +1,18 @@
-[gd_scene load_steps=22 format=3 uid="uid://dgcm6ac36bgj"]
+[gd_scene load_steps=26 format=3 uid="uid://dgcm6ac36bgj"]
 
 [ext_resource type="AudioStream" uid="uid://dyeyhl1vyr6pm" path="res://sounds/intermission/interm.ogg" id="1_22ejf"]
 [ext_resource type="Script" path="res://scenes/intermission.gd" id="1_k6vf8"]
 [ext_resource type="PackedScene" uid="uid://bp37lt4qode6h" path="res://scenes/life.tscn" id="2_ke6ur"]
-[ext_resource type="FontFile" uid="uid://dsk6tm03m6x1m" path="res://MSMINCHO.TTF" id="3_r5hoo"]
+[ext_resource type="AudioStream" uid="uid://bvdev2ywsst2v" path="res://sounds/intermission/win.ogg" id="3_7sww7"]
+[ext_resource type="AudioStream" uid="uid://b4q6kyj7y4itm" path="res://sounds/intermission/loss.ogg" id="4_ahu7i"]
 [ext_resource type="Script" path="res://scenes/Aly1.gd" id="4_lsny4"]
 [ext_resource type="Texture2D" uid="uid://dl0gtfmfjs8qb" path="res://sprites/aly1/bg.png" id="4_sgqge"]
 [ext_resource type="Texture2D" uid="uid://bmdoc8hegl7x8" path="res://sprites/aly1/circle.png" id="5_kgdpj"]
 [ext_resource type="Texture2D" uid="uid://v5p0k07i2kqj" path="res://sprites/aly1/aly.png" id="6_rvlvp"]
 [ext_resource type="AudioStream" uid="uid://ta0ko526ywqq" path="res://sounds/aly1/aly1.ogg" id="9_0rycy"]
 [ext_resource type="AudioStream" uid="uid://b3wonv8atgaad" path="res://sounds/aly1/boom.ogg" id="10_pi5il"]
+[ext_resource type="Texture2D" uid="uid://bwo0rmkvgbevw" path="res://sprites/instructions/aly1.png" id="11_6sj61"]
 [ext_resource type="AudioStream" uid="uid://bil5ixiwd5en2" path="res://sounds/aly1/success.ogg" id="11_yjn6w"]
-
-[sub_resource type="FontVariation" id="FontVariation_3jri1"]
-base_font = ExtResource("3_r5hoo")
-variation_face_index = 1
-variation_embolden = 1.34
-
-[sub_resource type="Animation" id="Animation_tqrm2"]
-resource_name = "exit_up"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.8, 0.86)]
-}
 
 [sub_resource type="Animation" id="Animation_dcm41"]
 length = 0.001
@@ -47,14 +29,9 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tln81"]
-_data = {
-"RESET": SubResource("Animation_dcm41"),
-"exit_up": SubResource("Animation_tqrm2")
-}
-
-[sub_resource type="Animation" id="Animation_y862t"]
-resource_name = "exit_down"
+[sub_resource type="Animation" id="Animation_tqrm2"]
+resource_name = "exit_up"
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -65,7 +42,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -4.725, 1.8)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0.8, 0.86)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tln81"]
+_data = {
+"RESET": SubResource("Animation_dcm41"),
+"exit_up": SubResource("Animation_tqrm2")
 }
 
 [sub_resource type="Animation" id="Animation_2qgqh"]
@@ -80,18 +63,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5s4ow"]
-_data = {
-"RESET": SubResource("Animation_2qgqh"),
-"exit_down": SubResource("Animation_y862t")
-}
-
-[sub_resource type="Animation" id="Animation_j4qja"]
-resource_name = "text_show"
-length = 4.0
+[sub_resource type="Animation" id="Animation_y862t"]
+resource_name = "exit_down"
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -99,37 +88,66 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.8, 1.1),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0.775, -3), Vector3(0.215, 0.775, -5)]
+"values": [Vector2(0, 0), Vector2(0, 141)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
+tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8, 1, 1.1, 3.1, 3.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.8, 1.1),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0.0698132), Vector3(0, 0, 0)]
+"values": [Vector2(1, 1), Vector2(2.12, 2.12)]
 }
 
-[sub_resource type="Animation" id="Animation_a3xu2"]
+[sub_resource type="Animation" id="Animation_q153b"]
+resource_name = "enter_down"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 141), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2.12, 2.12), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5s4ow"]
+_data = {
+"RESET": SubResource("Animation_2qgqh"),
+"enter_down": SubResource("Animation_q153b"),
+"exit_down": SubResource("Animation_y862t")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1vpq"]
+size = Vector2(330.514, 177.838)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ypn3"]
+size = Vector2(976.667, 944.111)
+
+[sub_resource type="Animation" id="Animation_obntj"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -141,135 +159,163 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0.775, -5)]
+"values": [Vector2(0, -79)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
+tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(1.885, 1.885)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
+tracks/2/path = NodePath(".:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fxdd7"]
+[sub_resource type="Animation" id="Animation_itq10"]
+resource_name = "show_instruction"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -79), Vector2(0, -21.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.885, 1.885), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 2.4, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4mw2m"]
 _data = {
-"RESET": SubResource("Animation_a3xu2"),
-"text_show": SubResource("Animation_j4qja")
+"RESET": SubResource("Animation_obntj"),
+"show_instruction": SubResource("Animation_itq10")
 }
 
-[node name="Intermission" type="Node3D" node_paths=PackedStringArray("top_anim", "bot_anim", "mg_aly1")]
+[node name="Intermission" type="Node2D" node_paths=PackedStringArray("top_anim", "bot_anim")]
 script = ExtResource("1_k6vf8")
 top_anim = NodePath("Intermission Top/AnimationPlayer")
 bot_anim = NodePath("Intermission Bottom/AnimationPlayer")
-mg_aly1 = NodePath("Minigame/Aly1")
-
-[node name="MinigameTimer" type="Label3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -5.01, -3.558, -5)
-billboard = 1
-double_sided = false
-texture_filter = 0
-text = "ttttttttttttttttttttttttttttttttttt"
-font = SubResource("FontVariation_3jri1")
-font_size = 16
-outline_size = 0
-horizontal_alignment = 0
-
-[node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="IntermissionMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_22ejf")
 autoplay = true
 
-[node name="Intermission Top" type="Node3D" parent="."]
+[node name="WinMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7sww7")
 
-[node name="Number" type="Label3D" parent="Intermission Top"]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 3, -5)
-billboard = 1
-double_sided = false
-texture_filter = 0
-text = "00"
-font = SubResource("FontVariation_3jri1")
-font_size = 16
-outline_size = 0
+[node name="LossMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ahu7i")
+
+[node name="Intermission Top" type="Node2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Intermission Top"]
 libraries = {
 "": SubResource("AnimationLibrary_tln81")
 }
 
-[node name="Intermission Bottom" type="Node3D" parent="."]
+[node name="Intermission Bottom" type="Node2D" parent="."]
 
-[node name="Lives" type="Node3D" parent="Intermission Bottom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+[node name="Lives" type="Node2D" parent="Intermission Bottom"]
+scale = Vector2(0.345, 0.345)
 
-[node name="Life1" parent="Intermission Bottom/Lives" instance=ExtResource("2_ke6ur")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -6.44, -4.335, 0)
+[node name="l1c" type="Node2D" parent="Intermission Bottom/Lives"]
+position = Vector2(-644, 400)
 
-[node name="Life2" parent="Intermission Bottom/Lives" instance=ExtResource("2_ke6ur")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.205, -4.335, 0)
+[node name="Life1" parent="Intermission Bottom/Lives/l1c" instance=ExtResource("2_ke6ur")]
 
-[node name="Life3" parent="Intermission Bottom/Lives" instance=ExtResource("2_ke6ur")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 2.05, -4.335, 0)
+[node name="l2c" type="Node2D" parent="Intermission Bottom/Lives"]
+position = Vector2(-205, 400)
 
-[node name="Life4" parent="Intermission Bottom/Lives" instance=ExtResource("2_ke6ur")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 6.44, -4.335, 0)
+[node name="Life2" parent="Intermission Bottom/Lives/l2c" instance=ExtResource("2_ke6ur")]
+
+[node name="l3c" type="Node2D" parent="Intermission Bottom/Lives"]
+position = Vector2(205, 400)
+
+[node name="Life3" parent="Intermission Bottom/Lives/l3c" instance=ExtResource("2_ke6ur")]
+
+[node name="l4c" type="Node2D" parent="Intermission Bottom/Lives"]
+position = Vector2(644, 400)
+
+[node name="Life4" parent="Intermission Bottom/Lives/l4c" instance=ExtResource("2_ke6ur")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Intermission Bottom"]
 libraries = {
 "": SubResource("AnimationLibrary_5s4ow")
 }
 
-[node name="Instruction" type="Label3D" parent="."]
-transform = Transform3D(9.835, 0, 0, 0, 9.835, 0, 0, 0, 9.835, 0, 0.775, -5)
-double_sided = false
-texture_filter = 0
-text = "Dodge the attack!"
-font = SubResource("FontVariation_3jri1")
-font_size = 16
-outline_size = 0
+[node name="Minigame" type="Node2D" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Instruction"]
-libraries = {
-"": SubResource("AnimationLibrary_fxdd7")
-}
-autoplay = "text_show"
-
-[node name="Minigame" type="Node3D" parent="."]
-
-[node name="Aly1" type="Node3D" parent="Minigame"]
+[node name="Aly1" type="Node2D" parent="Minigame"]
 visible = false
 script = ExtResource("4_lsny4")
 
-[node name="Background" type="Sprite3D" parent="Minigame/Aly1"]
-transform = Transform3D(6.465, 0, 0, 0, 6.465, 0, 0, 0, 6.465, 0, 0, -20)
+[node name="Background" type="Sprite2D" parent="Minigame/Aly1"]
 modulate = Color(0.544974, 0.544974, 0.544974, 1)
+position = Vector2(-5, 3.00002)
+scale = Vector2(0.260764, 0.292222)
 texture = ExtResource("4_sgqge")
 
-[node name="Circle" type="Sprite3D" parent="Minigame/Aly1"]
-transform = Transform3D(4.36, 0, 0, 0, 4.36, 0, 0, 0, 4.36, 0, -5.595, -19)
+[node name="Circle" type="Sprite2D" parent="Minigame/Aly1"]
+position = Vector2(-0.350006, 35)
+scale = Vector2(0.528571, 0.528571)
 texture = ExtResource("5_kgdpj")
 
-[node name="Aly" type="Sprite3D" parent="Minigame/Aly1"]
-transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, 0, -1.9, -10)
-double_sided = false
+[node name="Area2D" type="Area2D" parent="Minigame/Aly1/Circle"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigame/Aly1/Circle/Area2D"]
+shape = SubResource("RectangleShape2D_e1vpq")
+
+[node name="Aly" type="Sprite2D" parent="Minigame/Aly1"]
+position = Vector2(0, 5)
+scale = Vector2(0.0614334, 0.0614334)
 texture = ExtResource("6_rvlvp")
+
+[node name="Area2D" type="Area2D" parent="Minigame/Aly1/Aly"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigame/Aly1/Aly/Area2D"]
+shape = SubResource("RectangleShape2D_6ypn3")
 
 [node name="Music" type="AudioStreamPlayer" parent="Minigame/Aly1"]
 stream = ExtResource("9_0rycy")
@@ -296,7 +342,32 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Instruction" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -79)
+scale = Vector2(1.885, 1.885)
+
+[node name="Aly1" type="Sprite2D" parent="Instruction"]
+visible = false
+texture_filter = 1
+position = Vector2(0, -54.8)
+texture = ExtResource("11_6sj61")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Instruction"]
+libraries = {
+"": SubResource("AnimationLibrary_4mw2m")
+}
+
+[connection signal="finished" from="WinMusic" to="." method="_on_win_music_finished"]
+[connection signal="finished" from="LossMusic" to="." method="_on_loss_music_finished"]
 [connection signal="visibility_changed" from="Minigame/Aly1" to="Minigame/Aly1" method="_on_visibility_changed"]
+[connection signal="area_entered" from="Minigame/Aly1/Circle/Area2D" to="Minigame/Aly1" method="_on_bad_entered"]
+[connection signal="area_exited" from="Minigame/Aly1/Circle/Area2D" to="Minigame/Aly1" method="_on_bad_exited"]
+[connection signal="mouse_entered" from="Minigame/Aly1/Aly/Area2D" to="Minigame/Aly1" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Minigame/Aly1/Aly/Area2D" to="Minigame/Aly1" method="_on_area_2d_mouse_exited"]
+[connection signal="finished" from="Minigame/Aly1/Music" to="Minigame/Aly1" method="_on_music_finished"]
 [connection signal="timeout" from="Minigame/Aly1/ExplosionTimer" to="Minigame/Aly1" method="_on_explosion_timer_timeout"]
 [connection signal="timeout" from="MinigameTransitionTimer" to="." method="_on_minigame_transition"]
 [connection signal="timeout" from="MinigameStartTimer" to="." method="_on_minigame_start"]
