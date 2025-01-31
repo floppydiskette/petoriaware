@@ -15,39 +15,50 @@ extends Node2D
 @onready var mg_aly1 = $Minigame/Aly1
 @onready var in_aly1 = $Instruction/Aly1
 
+@onready var mg_aly2 = $Minigame/Aly2
+@onready var in_aly2 = $Instruction/Aly2
+
 @onready var life1 = $"Intermission Bottom/Lives/l1c/Life1"
 @onready var life2 = $"Intermission Bottom/Lives/l2c/Life2"
 @onready var life3 = $"Intermission Bottom/Lives/l3c/Life3"
 @onready var life4 = $"Intermission Bottom/Lives/l4c/Life4"
 
 enum Microgame {
-	ALY1
+	ALY1,
+	ALY2
 }
 
 func load_microgame(mg: Microgame):
 	match mg:
 		Microgame.ALY1:
 			mg_aly1.visible = true
+		Microgame.ALY2:
+			mg_aly2.visible = true
 
 func load_instruction(mg: Microgame):
 	match mg:
 		Microgame.ALY1:
 			in_aly1.visible = true
+		Microgame.ALY2:
+			in_aly2.visible = true
 	instruction_anim.play("show_instruction")
 
 func _on_minigame_start():
-	load_microgame(Microgame.ALY1)
+	load_microgame(Microgame.ALY2)
 
 func _on_minigame_transition():
 	top_anim.play("exit_up")
 	bot_anim.play("exit_down")
-	load_instruction(Microgame.ALY1)
+	load_instruction(Microgame.ALY2)
 
 func microgame_finished(mg: Microgame, win: bool):
 	match mg:
 		Microgame.ALY1:
 			mg_aly1.visible = false
 			in_aly1.visible = false
+		Microgame.ALY2:
+			mg_aly2.visible = false
+			in_aly2.visible = false
 	bot_anim.play("enter_down")
 	if win:
 		win_music.play()
