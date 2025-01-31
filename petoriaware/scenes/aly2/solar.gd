@@ -14,6 +14,9 @@ func verify(
 	abilities: Array,
 	slot_holders: Array
 ) -> bool:
+	if slot_holders.find(null) != -1:
+		return false
+	
 	var twin_idx = slot_holders.find(abilities[1])
 	var demo_idx = slot_holders.find(abilities[2])
 	
